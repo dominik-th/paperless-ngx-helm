@@ -255,6 +255,8 @@ redis:
     pullPolicy: IfNotPresent
   service:
     port: 6379
+  networkPolicy:
+    enabled: true
   # -- Optional Redis password (leave empty for no auth)
   password: ""
   persistence:
@@ -288,6 +290,8 @@ gotenberg:
     pullPolicy: IfNotPresent
   service:
     port: 3000
+  networkPolicy:
+    enabled: true
   resources: {}
   podSecurityContext: {}
   securityContext:
@@ -311,6 +315,8 @@ tika:
     pullPolicy: IfNotPresent
   service:
     port: 9998
+  networkPolicy:
+    enabled: true
   resources: {}
   podSecurityContext: {}
   securityContext:
