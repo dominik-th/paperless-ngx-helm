@@ -116,6 +116,17 @@ Redis service name
 {{- end }}
 
 {{/*
+Redis connection string
+*/}}
+{{- define "paperless-ngx.redisUrl" -}}
+{{- if or .Values.redis.passwordSecretKeyRef.name .Values.redis.password }}
+{{- printf "redis://:$(REDIS_PASSWORD)@%s:%d/0" (include "paperless-ngx.redisServiceName" .) (int .Values.redis.service.port) }}
+{{- else }}
+{{- printf "redis://%s:%d/0" (include "paperless-ngx.redisServiceName" .) (int .Values.redis.service.port) }}
+{{- end }}
+{{- end }}
+
+{{/*
 Gotenberg service name
 */}}
 {{- define "paperless-ngx.gotenbergServiceName" -}}

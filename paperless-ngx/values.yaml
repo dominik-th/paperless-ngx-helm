@@ -259,6 +259,9 @@ redis:
     enabled: true
   # -- Optional Redis password (leave empty for no auth)
   password: ""
+  passwordSecretKeyRef:
+    name: ""
+    key: password
   persistence:
     enabled: false
     storageClass: ""
