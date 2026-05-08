@@ -163,3 +163,16 @@ Validate required values – called from a top-level template to produce early e
 {{- fail "paperless.secrets.PAPERLESS_ADMIN_PASSWORD must be set." }}
 {{- end }}
 {{- end }}
+
+{{/*
+Renders a complete tree, even values that contains template.
+Credit to:
+https://github.com/traefik/traefik-helm-chart/commit/7f2629d7fcb633b4f7a8d321c27318781e1eb2b8
+*/}}
+{{- define "paperless-ngx.render" -}}
+{{- if typeIs "string" .value }}
+{{- tpl .value .context }}
+{{ else }}
+{{- tpl (.value | toYaml) .context }}
+{{- end }}
+{{- end -}}
