@@ -20,14 +20,15 @@ spec:
   {{- end }}
   rules:
     {{- range .Values.httpRoute.rules }}
-    {{- with .matches }}
-    - matches:
+    -
+      {{- with .matches }}
+      matches:
       {{- toYaml . | nindent 8 }}
-    {{- end }}
-    {{- with .filters }}
+      {{- end }}
+      {{- with .filters }}
       filters:
       {{- toYaml . | nindent 8 }}
-    {{- end }}
+      {{- end }}
       backendRefs:
         - name: {{ include "paperless-ngx.fullname" $ }}
           port: {{ $.Values.paperless.service.port }}
