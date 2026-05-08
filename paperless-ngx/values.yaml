@@ -130,6 +130,31 @@ ingress:
   #   hosts:
   #     - paperless.example.com
 # ---------------------------------------------------------------------------
+# Gateway API / HTTPRoute
+# ---------------------------------------------------------------------------
+httpRoute:
+  enabled: false
+  annotations: {}
+  parentRefs:
+    - name: gateway
+      sectionName: http
+      # namespace: default
+  hostnames:
+    - paperless.example.com
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      # filters:
+      #   - type: RequestHeaderModifier
+      #     requestHeaderModifier:
+      #       set:
+      #         - name: My-Overwrite-Header
+      #           value: this-is-the-only-value
+      #       remove:
+      #         - User-Agent
+# ---------------------------------------------------------------------------
 # Persistent Volume Claims
 # ---------------------------------------------------------------------------
 persistence:
