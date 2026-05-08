@@ -215,10 +215,12 @@ cnpg:
   image:
     repository: ghcr.io/cloudnative-pg/postgresql
     tag: "18"
+  inheritedMetadata: {}
   # -- Storage for primary + replicas
   storage:
     size: 10Gi
     storageClass: ""
+  walSegmentSize: ""
   # -- WAL storage (when empty, WAL is kept in the data volume)
   walStorage:
     enabled: false
